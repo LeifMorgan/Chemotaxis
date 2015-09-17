@@ -23,7 +23,7 @@ public class Chemotaxis extends PApplet {
  	//initialize bacteria variables here   
  	size(300,300);
  	small = new Bacteria();  
- 	colony = new Bacteria[20];
+ 	colony = new Bacteria[100];
  	for(int a = 0; a < colony.length; a++){
  		colony[a] = new Bacteria();
  	}
@@ -45,14 +45,17 @@ public class Chemotaxis extends PApplet {
  	int myX, myY;
  	int rX, rY;
  	int tX, tY;
+ 	float qX, qY;
  	Bacteria()
  	{
- 		myX = (int)(Math.random()*300);
- 		myY = (int)(Math.random()*300);
- 		rX = (int)(Math.random()*300);
-		rY = (int)(Math.random()*300);
-		tX = (int)(Math.random()*300);
-		tY = (int)(Math.random()*300);
+ 		myX = 300;
+ 		myY = 0;
+ 		rX = 0;
+		rY = 300;
+		tX = 300;
+		tY = 300;
+		qY = 0;
+		qX = 0;
  	}
  	public void walk()
  	{
@@ -89,6 +92,12 @@ public class Chemotaxis extends PApplet {
  		if(rX < mouseX){
  			rX = rX + (int)(Math.random()*3-.5f);
  		}
+ 		if(rX == mouseX && rY == mouseY){
+ 			rX = 150;
+ 			rY = 150;
+ 		}
+
+
 
  			//triangle
 
@@ -106,6 +115,28 @@ public class Chemotaxis extends PApplet {
  		if(tY <= 0){
  			tY = tY + (int)(Math.random()*3+1);
  		}
+
+
+ 			//quad
+ 		qX = qX + (float)(Math.random()*3-1.5f);
+ 		qY = qY + (float)(Math.random()*3-1.5f);
+ 		if(qX > mouseX){
+ 			qX = qX + (float)(Math.random()*3-2.5f);
+ 		}
+ 		if(qY > mouseY){
+ 			qY = qY + (float)(Math.random()*3-2.5f);
+ 		}
+ 		if(qY < mouseY){
+ 			qY = qY + (float)(Math.random()*3-.5f);
+ 		}
+ 		if(rX < mouseX){
+ 			qX = qX + (float)(Math.random()*3-.5f);
+ 		}
+ 		if(qX == mouseX && qY == mouseY){
+ 			qX = 0;
+ 			qY = 0;
+ 		}
+
  	}
  	public void show()
  	{
@@ -113,13 +144,16 @@ public class Chemotaxis extends PApplet {
  		strokeWeight(1);
 
  		stroke(51,255,153);
- 		ellipse(myX,myY,10,10);
+ 		ellipse(myX,myY,2,2);
 
  		stroke(255,255,0);
- 		rect(rX,rY,10,10);
+ 		rect(rX,rY,2,2);
 
  		stroke(0,0,255);
- 		triangle(tX,tY,tX+5,tY+10,tX+10,tY);
+ 		triangle(tX,tY,tX+2,tY+4,tX+4,tY);
+
+ 		stroke(178,102,255);
+ 		quad(qX,qY,qX+2,qY-2,qX+4,qY,qX+2,qY+2);
  	}
 
  }    
