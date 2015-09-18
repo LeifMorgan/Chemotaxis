@@ -23,7 +23,7 @@ public class Chemotaxis extends PApplet {
  	//initialize bacteria variables here   
  	size(300,300);
  	small = new Bacteria();  
- 	colony = new Bacteria[100];
+ 	colony = new Bacteria[500];
  	for(int a = 0; a < colony.length; a++){
  		colony[a] = new Bacteria();
  	}
@@ -45,17 +45,17 @@ public class Chemotaxis extends PApplet {
  	int myX, myY;
  	int rX, rY;
  	int tX, tY;
- 	float qX, qY;
+ 	int qX, qY;
  	Bacteria()
  	{
- 		myX = 300;
- 		myY = 0;
- 		rX = 0;
-		rY = 300;
-		tX = 300;
-		tY = 300;
-		qY = 0;
-		qX = 0;
+ 		myX = (int)(Math.random()*300);
+ 		myY = (int)(Math.random()*300);
+ 		rX = (int)(Math.random()*300);
+		rY = (int)(Math.random()*300);
+		tX = (int)(Math.random()*300);
+		tY = (int)(Math.random()*300);
+		qY = (int)(Math.random()*300);
+		qX = (int)(Math.random()*300);
  	}
  	public void walk()
  	{
@@ -63,19 +63,22 @@ public class Chemotaxis extends PApplet {
 
  		myX = myX + (int)(Math.random()*3-1.5f);
  		myY = myY + (int)(Math.random()*3-1.5f);
- 		if(myX >= 300){
+ 		if(myX > mouseX){
  			myX = myX + (int)(Math.random()*3-3);
  		}
- 		if(myY >= 300){
+ 		if(myY > mouseY){
  			myY = myY + (int)(Math.random()*3-3);
  		}
- 		if(myY <= 0){
+ 		if(myY < mouseY){
  			myY = myY + (int)(Math.random()*3+1);
  		}
- 		if(myX <= 0){
+ 		if(myX < mouseX){
  			myX = myX + (int)(Math.random()*3+1);
  		}
-
+		if(myX == mouseX && myY == mouseY){
+ 			myX = (int)(Math.random()*300);
+ 			myY = (int)(Math.random()*300);
+ 		}
  			//rectangles
 
  		rX = rX + (int)(Math.random()*3-1.5f);
@@ -93,8 +96,8 @@ public class Chemotaxis extends PApplet {
  			rX = rX + (int)(Math.random()*3-.5f);
  		}
  		if(rX == mouseX && rY == mouseY){
- 			rX = 150;
- 			rY = 150;
+ 			rX = (int)(Math.random()*300);
+ 			rY = (int)(Math.random()*300);
  		}
 
 
@@ -103,40 +106,56 @@ public class Chemotaxis extends PApplet {
 
  		tX = tX + (int)(Math.random()*3-1.5f);
  		tY = tY + (int)(Math.random()*3-1.5f);
- 		if(tX >= 290){
+ 		if(tX > mouseX){
  			tX = tX + (int)(Math.random()*3-3);
  		}
- 		if(tY >= 290){
+ 		if(tY > mouseY){
  			tY = tY + (int)(Math.random()*3-3);
  		}
- 		if(tY <= 0){
+ 		if(tY < mouseY){
  			tY = tY + (int)(Math.random()*3+1);
  		}
- 		if(tY <= 0){
- 			tY = tY + (int)(Math.random()*3+1);
+ 		if(tX < mouseX){
+ 			tX = tX + (int)(Math.random()*3+1);
+ 		}
+ 		if(tX == mouseX && tY == mouseY){
+ 			tX = (int)(Math.random()*300);
+ 			tY = (int)(Math.random()*300);
  		}
 
 
  			//quad
- 		qX = qX + (float)(Math.random()*3-1.5f);
- 		qY = qY + (float)(Math.random()*3-1.5f);
+ 		qX = qX + (int)(Math.random()*3-1.5f);
+ 		qY = qY + (int)(Math.random()*3-1.5f);
  		if(qX > mouseX){
- 			qX = qX + (float)(Math.random()*3-2.5f);
+ 			qX = qX + (int)(Math.random()*3-3);
  		}
  		if(qY > mouseY){
- 			qY = qY + (float)(Math.random()*3-2.5f);
+ 			qY = qY + (int)(Math.random()*3-2.5f);
  		}
  		if(qY < mouseY){
- 			qY = qY + (float)(Math.random()*3-.5f);
+ 			qY = qY + (int)(Math.random()*3-.5f);
  		}
  		if(rX < mouseX){
- 			qX = qX + (float)(Math.random()*3-.5f);
+ 			qX = qX + (int)(Math.random()*3-.5f);
  		}
  		if(qX == mouseX && qY == mouseY){
- 			qX = 0;
- 			qY = 0;
+ 			qX = (int)(Math.random()*300);
+ 			qY = (int)(Math.random()*300);
  		}
 
+
+
+ 			if(mousePressed){
+ 				myX = mouseX;
+ 		myY = mouseY;
+ 		rX = mouseX;
+		rY = mouseY;
+		tX = mouseX;
+		tY = mouseY;
+		qY = mouseY;
+		qX = mouseX;
+ 			}
  	}
  	public void show()
  	{
@@ -152,11 +171,15 @@ public class Chemotaxis extends PApplet {
  		stroke(0,0,255);
  		triangle(tX,tY,tX+2,tY+4,tX+4,tY);
 
- 		stroke(178,102,255);
+ 		stroke(255,102,255);
  		quad(qX,qY,qX+2,qY-2,qX+4,qY,qX+2,qY+2);
+
+ 		fill(255);
+ 		text("food",mouseX-10,mouseY);
  	}
 
  }    
+
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Chemotaxis" };
     if (passedArgs != null) {
