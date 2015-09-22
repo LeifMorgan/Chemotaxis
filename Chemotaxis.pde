@@ -172,7 +172,7 @@
  		stroke(255,255,0);
  		rect(rX,rY,6,6);
 
- 		stroke(0,0,255);
+ 		stroke(102,200,255);
  		triangle(tX,tY,tX+4,tY+6,tX+8,tY);
 
  		
