@@ -120,7 +120,7 @@
  		if(qY < mouseY){
  			qY = qY + (int)(Math.random()*3+1);
  		}
- 		if(rX < mouseX){
+ 		if(qX < mouseX){
  			qX = qX + (int)(Math.random()*3+1);
  		}
  		if(qX == mouseX && qY == mouseY){
