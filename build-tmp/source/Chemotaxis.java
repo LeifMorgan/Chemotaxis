@@ -23,7 +23,7 @@ public class Chemotaxis extends PApplet {
  	//initialize bacteria variables here   
  	size(500,500);
  	small = new Bacteria();  
- 	colony = new Bacteria[500];
+ 	colony = new Bacteria[100];
  	for(int a = 0; a < colony.length; a++){
  		colony[a] = new Bacteria();
  	}
@@ -84,16 +84,16 @@ public class Chemotaxis extends PApplet {
  		rX = rX + (int)(Math.random()*3-1.5f);
  		rY = rY + (int)(Math.random()*3-1.5f);
  		if(rX > mouseX){
- 			rX = rX + (int)(Math.random()*3-3);
+ 			rX = rX + (int)(Math.random()*3-4);
  		}
  		if(rY > mouseY){
- 			rY = rY + (int)(Math.random()*3-3);
+ 			rY = rY + (int)(Math.random()*3-4);
  		}
  		if(rY < mouseY){
- 			rY = rY + (int)(Math.random()*3);
+ 			rY = rY + (int)(Math.random()*3+1);
  		}
  		if(rX < mouseX){
- 			rX = rX + (int)(Math.random()*3);
+ 			rX = rX + (int)(Math.random()*3+1);
  		}
  		if(rX == mouseX && rY == mouseY){
  			rX = (int)(Math.random()*500);
@@ -107,16 +107,16 @@ public class Chemotaxis extends PApplet {
  		tX = tX + (int)(Math.random()*3-1.5f);
  		tY = tY + (int)(Math.random()*3-1.5f);
  		if(tX > mouseX){
- 			tX = tX + (int)(Math.random()*3-3);
+ 			tX = tX + (int)(Math.random()*3-4);
  		}
  		if(tY > mouseY){
- 			tY = tY + (int)(Math.random()*3-3);
+ 			tY = tY + (int)(Math.random()*3-4);
  		}
  		if(tY < mouseY){
- 			tY = tY + (int)(Math.random()*3+1);
+ 			tY = tY + (int)(Math.random()*3+2);
  		}
  		if(tX < mouseX){
- 			tX = tX + (int)(Math.random()*3+1);
+ 			tX = tX + (int)(Math.random()*3+2);
  		}
  		if(tX == mouseX && tY == mouseY){
  			tX = (int)(Math.random()*500);
@@ -153,7 +153,7 @@ public class Chemotaxis extends PApplet {
 			 	rX = rX + (int)(Math.random()*3+4);
  				rY = rY + (int)(Math.random()*3-4);
 
-			 	tX = tX + (int)(Math.random()*3-5);
+			 	tX = tX + (int)(Math.random()*3-8);
  				tY = tY + (int)(Math.random()*3+5);
 
  				qX = qX + (int)(Math.random()*3+5);
@@ -178,18 +178,18 @@ public class Chemotaxis extends PApplet {
  		strokeWeight(1);
 
 		stroke(255,0,255);
- 		quad(qX,qY,qX+2,qY-2,qX+4,qY,qX+2,qY+2);
+ 		quad(qX,qY,qX+4,qY-4,qX+8,qY,qX+4,qY+4);
 
  		stroke(51,255,153);
- 		ellipse(myX,myY,2,2);
+ 		ellipse(myX,myY,6,6);
 
 
 
  		stroke(255,255,0);
- 		rect(rX,rY,2,2);
+ 		rect(rX,rY,6,6);
 
  		stroke(0,0,255);
- 		triangle(tX,tY,tX+2,tY+4,tX+4,tY);
+ 		triangle(tX,tY,tX+4,tY+6,tX+8,tY);
 
  		
 
