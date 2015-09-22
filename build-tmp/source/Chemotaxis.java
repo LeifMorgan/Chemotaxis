@@ -90,7 +90,7 @@ public class Chemotaxis extends PApplet {
  			rY = rY + (int)(Math.random()*3-4);
  		}
  		if(rY < mouseY){
- 			rY = rY + (int)(Math.random()*3+1);
+ 			rY = rY + (int)(Math.random()*3);
  		}
  		if(rX < mouseX){
  			rX = rX + (int)(Math.random()*3+1);
@@ -116,7 +116,7 @@ public class Chemotaxis extends PApplet {
  			tY = tY + (int)(Math.random()*3+2);
  		}
  		if(tX < mouseX){
- 			tX = tX + (int)(Math.random()*3+2);
+ 			tX = tX + (int)(Math.random()*3+1);
  		}
  		if(tX == mouseX && tY == mouseY){
  			tX = (int)(Math.random()*500);
